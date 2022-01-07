@@ -6,36 +6,67 @@ console.log('Selecciones que participan en el playoff:')
 console.log(selecciones)
 selecciones.sort(() => Math.random()-0.5);
 
-const ganadoresDeRonda = [];
-while (selecciones.length > 0) {   
-    let ganador = ''; 
-    let seleccionesEnfrentadas = selecciones.splice(0,2);
-    //console.log(seleccionesEnfrentadas)
-    let equipo1 = [seleccionesEnfrentadas[0]];
-    let equipo2 = [seleccionesEnfrentadas[1]];
-    //partido.start();
-    equipo1.goles = 2; //this.anotaGol();
-    equipo2.goles = 4; //this.anotaGol();
-    if (equipo1.goles > equipo2.goles) {
-        ganador = equipo1[0];
-     } 
-     else { 
-        ganador = equipo2[0];
-     }
-    
+let ganadoresDeRonda = [];
+let perdedor = [];
 
-    console.log(equipo1[0], 'vs', equipo2[0], 'resultado ->', equipo1.goles, '-', equipo2.goles, 'Ganador ->', ganador)
-    ganadoresDeRonda.push(ganador)
-
-    selecciones.sort(() => Math.random()-0.5);
-    //console.log(selecciones)
+function eliminatoria(equipos) {
+    ganadoresDeRonda = [];
+    perdedor = [];
+    while (equipos.length > 0) {   
+        let ganador = ''; 
+        let seleccionesEnfrentadas = equipos.splice(0,2);
+        //console.log(seleccionesEnfrentadas)
+        let equipo1 = [seleccionesEnfrentadas[0]];
+        let equipo2 = [seleccionesEnfrentadas[1]];
+        //partido.start();
+        equipo1.goles = Math.floor(Math.random() * 6);
+        equipo2.goles = Math.floor(Math.random() * 6);
+        if (equipo1.goles > equipo2.goles) {
+            ganador = equipo1[0];
+            perdedor.push(equipo2[0]);
+         } 
+         else { 
+            ganador = equipo2[0];
+            perdedor.push(equipo1[0]);
+         }
+        
     
+        console.log(equipo1[0], 'vs', equipo2[0], 'Resultado ->', equipo1.goles, '-', equipo2.goles, 'Ganador ->', ganador)
+        ganadoresDeRonda.push(ganador)
+    
+        equipos.sort(() => Math.random()-0.5);
+        
+    }
 }
-console.log (ganadoresDeRonda)
 
-// anotaGol(){
-//     return Math.floor(Math.random() * 10);
-// }
+console.log ('===== OCTAVOS DE FINAL =====')
+eliminatoria(selecciones)
+let octavos = ganadoresDeRonda
+//console.log (octavos)
+
+console.log ('===== CUARTOS DE FINAL =====')
+eliminatoria(octavos)
+let cuartos = ganadoresDeRonda
+//console.log (cuartos)
+
+console.log ('======== SEMIFINAL =========')
+perdedor = [];
+eliminatoria(cuartos)
+let semifinal = ganadoresDeRonda
+//console.log (semifinal)
+//console.log (perdedor)
+
+console.log ('== TERCER Y CUARTO PUESTO ==')
+eliminatoria(perdedor)
+let tercero = ganadoresDeRonda
+//console.log (tercero)
+
+console.log ('=========== FINAL ==========')
+eliminatoria(semifinal)
+let final = ganadoresDeRonda
+//console.log (final)
+console.log ('===============================================\n¡',final, 'campeón del mundo!\n===============================================')
+
 
 
 
