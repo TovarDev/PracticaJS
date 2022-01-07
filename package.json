@@ -1,0 +1,21 @@
+{
+  "name": "practicajs",
+  "version": "1.0.0",
+  "description": "Práctica de introducción a Java Script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TovarDev/PracticaJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TovarDev/PracticaJS/issues"
+  },
+  "homepage": "https://github.com/TovarDev/PracticaJS#readme",
+  "type": "module"
+}
